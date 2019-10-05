@@ -10,6 +10,7 @@ initialModel environmentVariables key route =
     { environmentVariables = environmentVariables
     , key = key
     , route = route
+    , datetime = "2020-01-01"
     }
 
 
@@ -17,4 +18,5 @@ type alias Model =
     { environmentVariables : EnvironmentVariables
     , key : Key
     , route : Maybe Route
+    , datetime : String
     }

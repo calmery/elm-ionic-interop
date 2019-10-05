@@ -10,6 +10,7 @@ import Url exposing (Url)
 type Msg
     = LinkClicked UrlRequest
     | UrlChanged Url
+    | DateTimeChanged String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -31,3 +32,6 @@ update msg model =
             ( { model | route = route }
             , Cmd.none
             )
+
+        DateTimeChanged datetime ->
+            ( { model | datetime = datetime }, Cmd.none )
