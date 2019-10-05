@@ -1,0 +1,138 @@
+{
+  "engine": {
+    "node": "10.16.3",
+    "npm": "6.11.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "env": {
+      "browser": true,
+      "jest": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ],
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/explicit-member-accessibility": "off",
+      "@typescript-eslint/no-explicit-any": "error"
+    }
+  },
+  "devDependencies": {
+    "@types/autoprefixer": "9.6.1",
+    "@types/copy-webpack-plugin": "5.0.0",
+    "@types/html-webpack-plugin": "3.2.1",
+    "@types/jest": "24.0.18",
+    "@types/mini-css-extract-plugin": "0.8.0",
+    "@types/node": "12.7.11",
+    "@types/optimize-css-assets-webpack-plugin": "5.0.0",
+    "@types/script-ext-html-webpack-plugin": "2.1.1",
+    "@types/uglifyjs-webpack-plugin": "1.1.0",
+    "@types/webpack-merge": "4.1.5",
+    "@types/workbox-webpack-plugin": "4.1.0",
+    "@typescript-eslint/eslint-plugin": "2.3.2",
+    "@typescript-eslint/parser": "2.3.2",
+    "autoprefixer": "9.6.1",
+    "copy-webpack-plugin": "5.0.4",
+    "css-loader": "3.2.0",
+    "elm": "0.19.0",
+    "elm-format": "0.8.2",
+    "elm-test": "0.19.0",
+    "elm-webpack-loader": "6.0.0",
+    "eslint": "6.5.1",
+    "eslint-config-prettier": "6.1.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "html-webpack-plugin": "3.2.0",
+    "husky": "3.0.8",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "24.9.0",
+    "lint-staged": "9.4.1",
+    "mini-css-extract-plugin": "0.8.0",
+    "node-sass": "4.12.0",
+    "npm-run-all": "4.1.5",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "postcss-loader": "3.0.0",
+    "prettier": "1.18.2",
+    "rimraf": "3.0.0",
+    "sass-loader": "7.3.1",
+    "script-ext-html-webpack-plugin": "2.1.4",
+    "style-loader": "1.0.0",
+    "ts-jest": "24.0.2",
+    "ts-loader": "6.2.0",
+    "ts-node": "8.3.0",
+    "typescript": "3.6.2",
+    "uglifyjs-webpack-plugin": "2.2.0",
+    "webpack": "4.41.0",
+    "webpack-cli": "3.3.7",
+    "webpack-dev-server": "3.8.2",
+    "webpack-manifest-plugin": "2.2.0",
+    "webpack-merge": "4.2.2",
+    "workbox-webpack-plugin": "4.3.1",
+    "write-file-webpack-plugin": "4.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ],
+    "moduleNameMapper": {
+      "\\.scss$": "identity-obj-proxy",
+      "\\.elm$": "<rootDir>/mocks/elm.ts"
+    },
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
+  "lint-staged": {
+    "**/*.elm": [
+      "npm run prettify:elm",
+      "git add"
+    ],
+    "**/*.scss": [
+      "npm run prettify:scss",
+      "git add"
+    ],
+    "**/*.(html|json|md)": [
+      "npm run prettify:static",
+      "git add"
+    ],
+    "**/*.ts": [
+      "npm run prettify:typescript",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "build": "webpack",
+    "build:production": "npm run clean && NODE_ENV=production npm run build",
+    "clean": "rimraf build",
+    "prettify": "npm-run-all prettify:*",
+    "prettify:elm": "elm-format --yes .",
+    "prettify:scss": "prettier --ignore-path .gitignore --write \"**/*.scss\"",
+    "prettify:static": "prettier --ignore-path .gitignore --write \"**/*.{html,json,md}\"",
+    "prettify:typescript": "eslint --ignore-path .gitignore --fix . --ext .ts",
+    "start": "webpack-dev-server --host 0.0.0.0 --port 3000",
+    "test": "jest --coverage && elm-test"
+  }
+}
