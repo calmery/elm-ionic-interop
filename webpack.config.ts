@@ -22,7 +22,7 @@ const common: Configuration = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         loader: [
           NODE_ENV === "production"
             ? MiniCssExtractPlugin.loader

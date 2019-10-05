@@ -31,6 +31,9 @@
       "@typescript-eslint/no-explicit-any": "error"
     }
   },
+  "dependencies": {
+    "@ionic/core": "4.10.0"
+  },
   "devDependencies": {
     "@types/autoprefixer": "9.6.1",
     "@types/copy-webpack-plugin": "5.0.0",
@@ -94,7 +97,7 @@
       "!src/**/*.d.ts"
     ],
     "moduleNameMapper": {
-      "\\.scss$": "identity-obj-proxy",
+      "\\.s?css$": "identity-obj-proxy",
       "\\.elm$": "<rootDir>/mocks/elm.ts"
     },
     "roots": [
