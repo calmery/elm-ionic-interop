@@ -6,9 +6,7 @@ import Model exposing (Model)
 import Update exposing (Msg)
 
 
-view : Model -> Html Msg
+view : Model -> List (Html Msg)
 view model =
-    div
-        []
-        [ a [ href "/#/" ] [ text "Go to Top" ]
-        ]
+    [ a [ href "/#/" ] [ text "Go to Top" ]
+    ]

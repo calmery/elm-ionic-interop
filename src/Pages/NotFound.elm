@@ -4,8 +4,6 @@ import Html exposing (Html, div, text)
 import Update exposing (Msg)
 
 
-view : Html Msg
+view : List (Html Msg)
 view =
-    div
-        []
-        [ text "Not Found" ]
+    [ text "Not Found" ]
