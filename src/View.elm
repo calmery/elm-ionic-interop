@@ -1,8 +1,10 @@
 module View exposing (view)
 
 import Browser exposing (Document)
-import Html exposing (Html, div, text)
-import Ionic exposing (app, content)
+import Html exposing (Html, div, node, text)
+import Html.Attributes exposing (attribute)
+import Ionic exposing (app, content, header, item, menu, title, toolbar)
+import Ionic.Attributes exposing (color, side)
 import Model exposing (Model)
 import Pages.Example as Example
 import Pages.NotFound as NotFound
@@ -17,9 +19,17 @@ view model =
     , body =
         [ app
             []
-            [ content
-                []
-                [ viewPage model ]
+            [ menu
+                [ side "start" ]
+                [ header
+                    []
+                    [ toolbar [ color "primary" ] [ title [] [ text "Menu" ] ]
+                    , content
+                        []
+                        [ item [] [ text "Menu" ] ]
+                    ]
+                ]
+            , viewPage model
             ]
         ]
     }
