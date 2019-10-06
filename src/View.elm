@@ -2,6 +2,7 @@ module View exposing (view)
 
 import Browser exposing (Document)
 import Html exposing (Html, div, text)
+import Ionic exposing (app, content)
 import Model exposing (Model)
 import Pages.Example as Example
 import Pages.NotFound as NotFound
@@ -14,7 +15,12 @@ view : Model -> Document Msg
 view model =
     { title = "Elm App"
     , body =
-        [ viewPage model
+        [ app
+            []
+            [ content
+                []
+                [ viewPage model ]
+            ]
         ]
     }
 
