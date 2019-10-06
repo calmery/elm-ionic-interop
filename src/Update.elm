@@ -3,6 +3,7 @@ module Update exposing (Msg(..), update)
 import Browser exposing (UrlRequest(..))
 import Browser.Navigation exposing (load, pushUrl)
 import Model exposing (Model)
+import Port exposing (urlChanged)
 import Route exposing (parseUrl)
 import Url exposing (Url)
 
@@ -30,7 +31,7 @@ update msg model =
                     parseUrl url
             in
             ( { model | route = route }
-            , Cmd.none
+            , urlChanged ()
             )
 
         DateTimeChanged datetime ->

@@ -1,10 +1,16 @@
-module Ionic exposing (app, content, datetime)
+module Ionic exposing (application, content, datetime)
 
-import Html exposing (node)
+import Html exposing (div, node)
+import Html.Attributes exposing (attribute, style)
 
 
-app =
-    node "ion-app"
+application title route routes =
+    { title = title
+    , body =
+        [ div [ style "display" "none", attribute "data-ionic-component" (Debug.toString route) ] routes
+        , node "ion-app" [] [ node "ion-nav" [] [] ]
+        ]
+    }
 
 
 content =

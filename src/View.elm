@@ -2,7 +2,7 @@ module View exposing (view)
 
 import Browser exposing (Document)
 import Html exposing (Html, div, text)
-import Ionic exposing (app, content)
+import Ionic exposing (application, content)
 import Model exposing (Model)
 import Pages.Example as Example
 import Pages.NotFound as NotFound
@@ -13,28 +13,18 @@ import Update exposing (Msg(..))
 
 view : Model -> Document Msg
 view model =
-    { title = "Elm App"
-    , body =
-        [ app
-            []
-            [ content
-                []
-                [ viewPage model ]
-            ]
-        ]
-    }
+    application
+        "Elm App"
+        model.route
+        (case model.route of
+            Just route ->
+                case route of
+                    Top ->
+                        Top.view model
 
+                    Example ->
+                        Example.view model
 
-viewPage : Model -> Html Msg
-viewPage model =
-    case model.route of
-        Just route ->
-            case route of
-                Top ->
-                    Top.view model
-
-                Example ->
-                    Example.view model
-
-        Nothing ->
-            NotFound.view
+            Nothing ->
+                NotFound.view
+        )

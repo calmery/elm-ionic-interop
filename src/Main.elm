@@ -5,6 +5,7 @@ import Browser.Navigation exposing (Key)
 import Flags exposing (decodeFlags)
 import Html exposing (text)
 import Model exposing (Model, initialModel)
+import Port exposing (urlChanged)
 import Route exposing (parseUrl)
 import Tuple exposing (first, second)
 import Update exposing (Msg(..), update)
@@ -32,7 +33,7 @@ init flags url key =
                 |> parseUrl
     in
     ( initialModel (decodeFlags flags) key route
-    , Cmd.none
+    , urlChanged ()
     )
 
 

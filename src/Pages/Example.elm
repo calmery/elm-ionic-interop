@@ -1,14 +1,28 @@
 module Pages.Example exposing (view)
 
-import Html exposing (Html, a, div, text)
-import Html.Attributes exposing (href)
+import Html exposing (Html, a, div, node, text)
+import Html.Attributes exposing (attribute, href)
 import Model exposing (Model)
 import Update exposing (Msg)
 
 
-view : Model -> Html Msg
+view : Model -> List (Html Msg)
 view model =
-    div
+    viewHelper
+
+
+viewHelper =
+    [ node "ion-header"
         []
-        [ a [ href "/#/" ] [ text "Go to Top" ]
+        [ node "ion-toolbar"
+            []
+            [ node "ion-buttons"
+                [ attribute "slot" "start" ]
+                [ node "ion-back-button" [] [] ]
+            , node "ion-title" [] [ text "Example" ]
+            ]
         ]
+    , node "ion-content"
+        []
+        [ a [ href "/#/" ] [ text "Go To Top" ] ]
+    ]
