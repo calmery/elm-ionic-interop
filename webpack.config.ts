@@ -22,6 +22,17 @@ const common: Configuration = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        loader: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "svg/[name].[ext]"
+            }
+          }
+        ]
+      },
+      {
         test: /\.s?css$/,
         loader: [
           NODE_ENV === "production"

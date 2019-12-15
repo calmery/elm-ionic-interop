@@ -1,4 +1,5 @@
 import { defineCustomElements } from "@ionic/core/loader";
+import "ionicons/icons";
 import "@ionic/core/css/ionic.bundle.css";
 import "./index.scss";
 import { register } from "./serviceWorker";
