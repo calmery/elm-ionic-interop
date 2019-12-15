@@ -23,16 +23,23 @@ const { ports } = Elm.Main.init({
 console.log(process.env.NODE_ENV);
 
 if (ports && ports.createAlert) {
-  (ports.createAlert as Elm.Ports.Subscribable).subscribe(async () => {
-    const alertController = document.querySelector("ion-alert-controller")!;
-    const alert = await alertController.create({
-      header: "Alert",
-      subHeader: "Subtitle",
-      message: "This is an alert message.",
-      buttons: ["OK"]
-    });
-    await alert.present();
-  });
+  (ports.createAlert as Elm.Ports.Subscribable).subscribe(
+    async ({ header, message }: { header: string; message: string }) => {
+      const alertController = document.querySelector("ion-alert-controller")!;
+      const alert = await alertController.create({
+        header,
+        message,
+        buttons: [
+          {
+            text: "OK",
+            handler: () =>
+              (ports.onClickOkButton as Elm.Ports.Sendable).send(null)
+          }
+        ]
+      });
+      await alert.present();
+    }
+  );
 }
 
 if (ports && ports.createLoading) {

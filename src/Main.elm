@@ -4,6 +4,7 @@ import Browser exposing (application)
 import Browser.Navigation exposing (Key)
 import Flags exposing (decodeFlags)
 import Html exposing (text)
+import Ionic.Port exposing (onClickOkButton)
 import Model exposing (Model, initialModel)
 import Route exposing (parseUrl)
 import Tuple exposing (first, second)
@@ -38,7 +39,7 @@ init flags url key =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    onClickOkButton (\_ -> OKButtonClicked)
 
 
 

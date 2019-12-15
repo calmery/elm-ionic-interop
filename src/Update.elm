@@ -19,11 +19,19 @@ type Msg
     | CreateToast
     | OnRefresh
     | RefreshComplete
+    | OKButtonClicked
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        OKButtonClicked ->
+            let
+                _ =
+                    Debug.log "Clicked" model
+            in
+            ( model, Cmd.none )
+
         LinkClicked urlRequest ->
             case urlRequest of
                 Internal url ->
@@ -45,7 +53,7 @@ update msg model =
             ( { model | datetime = datetime }, Cmd.none )
 
         CreateAlert ->
-            ( model, createAlert () )
+            ( model, createAlert { header = "Header", message = "Message" } )
 
         CreateLoading ->
             ( model, createLoading () )
